@@ -36,19 +36,16 @@ const FoodieCard = ({ name, title, instagramHandle, rating, instagram, tiktok, y
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-900">{instagramHandle}</p>
-                <div className="flex items-center space-x-1 mt-1">
-                  <h3 className="text-sm font-semibold text-gray-900">{name}</h3>
-                  <div className="flex items-center ml-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-3 h-3 ${
-                          i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                    <span className="text-xs text-gray-500 ml-1">({rating})</span>
-                  </div>
+                <div className="flex items-center mt-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-3 h-3 ${
+                        i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+                      }`}
+                    />
+                  ))}
+                  <span className="text-xs text-gray-500 ml-1">({rating})</span>
                 </div>
                 <p className="text-xs text-gray-600 mt-1">{title}</p>
               </div>
