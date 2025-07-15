@@ -23,9 +23,16 @@ interface FoodieCardProps {
 
 const FoodieCard = ({ name, title, instagramHandle, rating, score, instagram, tiktok, youtube }: FoodieCardProps) => {
   const getScoreColor = (score: number) => {
-    if (score >= 70) return "border-green-500 text-green-500";
-    if (score >= 50) return "border-yellow-500 text-yellow-500";
-    return "border-red-500 text-red-500";
+    if (score >= 70) return "stroke-green-500 text-green-500";
+    if (score >= 50) return "stroke-yellow-500 text-yellow-500";
+    return "stroke-red-500 text-red-500";
+  };
+
+  const getCircleProgress = (score: number) => {
+    const radius = 16;
+    const circumference = 2 * Math.PI * radius;
+    const progress = (score / 100) * circumference;
+    return { circumference, progress };
   };
 
   return (
@@ -59,8 +66,33 @@ const FoodieCard = ({ name, title, instagramHandle, rating, score, instagram, ti
                 </div>
                 
                 {/* Credibility Score */}
-                <div className={`w-10 h-10 rounded-full border-2 bg-white flex items-center justify-center shadow-sm ${getScoreColor(score)}`}>
-                  <span className="text-xs font-bold">{score}</span>
+                <div className="relative w-10 h-10 flex items-center justify-center">
+                  <svg className="w-10 h-10 transform -rotate-90" viewBox="0 0 40 40">
+                    {/* Background circle */}
+                    <circle
+                      cx="20"
+                      cy="20"
+                      r="16"
+                      fill="none"
+                      stroke="#e5e7eb"
+                      strokeWidth="2"
+                    />
+                    {/* Progress circle */}
+                    <circle
+                      cx="20"
+                      cy="20"
+                      r="16"
+                      fill="none"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeDasharray={getCircleProgress(score).circumference}
+                      strokeDashoffset={getCircleProgress(score).circumference - getCircleProgress(score).progress}
+                      className={getScoreColor(score)}
+                    />
+                  </svg>
+                  <span className={`absolute text-xs font-bold ${getScoreColor(score).replace('stroke-', 'text-')}`}>
+                    {score}
+                  </span>
                 </div>
               </div>
               
