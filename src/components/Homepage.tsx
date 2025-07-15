@@ -6,10 +6,48 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import ProfileSidebar from './ProfileSidebar';
+import FoodieCard from './FoodieCard';
 
 const Homepage = () => {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const sampleFoodies = [
+    {
+      name: "Chef Maria Rodriguez",
+      title: "Food Enthusiast",
+      image: "/lovable-uploads/26ce4d51-7cef-481d-8b86-af6c758c3760.png",
+      instagram: {
+        followers: "125K",
+        engagement: "4.2%"
+      },
+      tiktok: {
+        followers: "89K",
+        engagement: "6.8%"
+      },
+      youtube: {
+        followers: "45K",
+        engagement: "3.1%"
+      }
+    },
+    {
+      name: "Alex Thompson",
+      title: "Culinary Explorer",
+      image: "/lovable-uploads/af4f172b-c1c6-4c8b-916f-423ef933eeaa.png",
+      instagram: {
+        followers: "78K",
+        engagement: "5.3%"
+      },
+      tiktok: {
+        followers: "156K",
+        engagement: "8.2%"
+      },
+      youtube: {
+        followers: "32K",
+        engagement: "2.9%"
+      }
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50 flex items-center justify-center p-4">
@@ -52,6 +90,24 @@ const Homepage = () => {
             </Sheet>
           </CardContent>
         </Card>
+
+        {/* Foodie Cards Section */}
+        <div className="mt-8 space-y-4">
+          <h2 className="text-xl font-semibold text-gray-900 text-center mb-4">
+            Featured Foodies
+          </h2>
+          {sampleFoodies.map((foodie, index) => (
+            <FoodieCard
+              key={index}
+              name={foodie.name}
+              title={foodie.title}
+              image={foodie.image}
+              instagram={foodie.instagram}
+              tiktok={foodie.tiktok}
+              youtube={foodie.youtube}
+            />
+          ))}
+        </div>
 
         {/* Footer */}
         <div className="text-center mt-6 text-xs text-gray-500">
