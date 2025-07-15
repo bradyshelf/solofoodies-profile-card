@@ -22,13 +22,14 @@ interface FoodieCardProps {
 }
 
 const FoodieCard = ({ name, title, instagramHandle, rating, score, instagram, tiktok, youtube }: FoodieCardProps) => {
+  const getScoreColor = (score: number) => {
+    if (score >= 70) return "border-green-500 text-green-500";
+    if (score >= 50) return "border-yellow-500 text-yellow-500";
+    return "border-red-500 text-red-500";
+  };
+
   return (
-    <Card className="w-full max-w-md mx-auto bg-white shadow-lg rounded-2xl overflow-hidden relative">
-      {/* Round Score Badge */}
-      <div className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full border-2 border-gray-200 flex items-center justify-center shadow-sm">
-        <span className="text-sm font-bold text-gray-900">{score}</span>
-      </div>
-      
+    <Card className="w-full max-w-md mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">
       <CardContent className="p-4">
         {/* Main horizontal section */}
         <div className="flex items-start">
@@ -40,20 +41,27 @@ const FoodieCard = ({ name, title, instagramHandle, rating, score, instagram, ti
           {/* Name and Info Section */}
           <div className="ml-4 flex-1">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-900">{instagramHandle}</p>
-                <div className="flex items-center mt-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-3 h-3 ${
-                        i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                      }`}
-                    />
-                  ))}
-                  <span className="text-xs text-gray-500 ml-1">({rating})</span>
+              <div className="flex items-center space-x-2">
+                <div>
+                  <p className="text-sm font-medium text-gray-900">{instagramHandle}</p>
+                  <div className="flex items-center mt-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-3 h-3 ${
+                          i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+                        }`}
+                      />
+                    ))}
+                    <span className="text-xs text-gray-500 ml-1">({rating})</span>
+                  </div>
+                  <p className="text-xs text-gray-600 mt-1">{title}</p>
                 </div>
-                <p className="text-xs text-gray-600 mt-1">{title}</p>
+                
+                {/* Credibility Score */}
+                <div className={`w-10 h-10 rounded-full border-2 bg-white flex items-center justify-center shadow-sm ${getScoreColor(score)}`}>
+                  <span className="text-xs font-bold">{score}</span>
+                </div>
               </div>
               
               {/* Action Buttons */}
