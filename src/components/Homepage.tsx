@@ -75,28 +75,6 @@ const Homepage = () => {
           <p className="text-gray-600">Restaurant Profile Management</p>
         </div>
 
-        {/* Profile Access Card */}
-        <Card className="backdrop-blur-sm bg-white/80 border-0 shadow-xl">
-          <CardHeader className="text-center pb-4">
-            <CardTitle className="text-2xl font-semibold text-gray-900">
-              Restaurant Profile
-            </CardTitle>
-          </CardHeader>
-          
-          <CardContent>
-            <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-              <SheetTrigger asChild>
-                <Button className="w-full bg-red-500 hover:bg-red-600 h-12">
-                  Access Profile Settings
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="p-0 w-80">
-                <ProfileSidebar onClose={() => setIsSidebarOpen(false)} />
-              </SheetContent>
-            </Sheet>
-          </CardContent>
-        </Card>
-
         {/* Foodie Cards Section */}
         <div className="mt-8 space-y-4">
           <h2 className="text-xl font-semibold text-gray-900 text-center mb-4">
