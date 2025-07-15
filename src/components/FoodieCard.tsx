@@ -68,32 +68,19 @@ const FoodieCard = ({ name, title, instagramHandle, rating, score, collaboration
                 
                 {/* Credibility Score */}
                 <div className="relative w-10 h-10 flex items-center justify-center">
-                  <svg className="w-10 h-10 transform -rotate-90" viewBox="0 0 40 40">
-                    {/* Background circle */}
-                    <circle
-                      cx="20"
-                      cy="20"
-                      r="16"
-                      fill="none"
-                      stroke="#e5e7eb"
-                      strokeWidth="2"
+                  <div className="w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center relative">
+                    <div 
+                      className={`absolute inset-0 rounded-full border-2 border-transparent ${getScoreColor(score).replace('stroke-', 'border-')}`}
+                      style={{
+                        background: `conic-gradient(currentColor ${score * 3.6}deg, transparent ${score * 3.6}deg)`,
+                        WebkitMask: 'radial-gradient(circle, transparent 6px, black 6px)',
+                        mask: 'radial-gradient(circle, transparent 6px, black 6px)'
+                      }}
                     />
-                    {/* Progress circle */}
-                    <circle
-                      cx="20"
-                      cy="20"
-                      r="16"
-                      fill="none"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeDasharray={getCircleProgress(score).circumference}
-                      strokeDashoffset={getCircleProgress(score).circumference - getCircleProgress(score).progress}
-                      className={getScoreColor(score)}
-                    />
-                  </svg>
-                  <span className={`absolute text-xs font-bold ${getScoreColor(score).replace('stroke-', 'text-')}`}>
-                    {score}
-                  </span>
+                    <span className={`text-xs font-bold ${getScoreColor(score).replace('stroke-', 'text-')}`}>
+                      {score}
+                    </span>
+                  </div>
                 </div>
               </div>
               
