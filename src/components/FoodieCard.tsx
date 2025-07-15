@@ -1,4 +1,4 @@
-import { Instagram, Youtube, User, Star, MessageCircle } from 'lucide-react';
+import { Instagram, Youtube, User, Star, MessageCircle, Handshake } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface FoodieCardProps {
@@ -132,7 +132,8 @@ const FoodieCard = ({ name, title, instagramHandle, rating, score, collaboration
             <div className="text-xs text-gray-500">{youtube.engagement}</div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-xs font-bold text-gray-900 mt-4">{collaborations}</div>
+            <Handshake className="w-4 h-4 text-gray-600 mb-1" />
+            <div className="text-xs font-bold text-gray-900">{collaborations}</div>
             <div className="text-xs text-gray-500">Collabs</div>
           </div>
         </div>
