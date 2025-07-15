@@ -99,7 +99,7 @@ const FoodieCard = ({ name, title, instagramHandle, rating, score, collaboration
               
               {/* Action Buttons */}
               <div className="flex space-x-2">
-                <button className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                <button className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
                   <MessageCircle className="w-4 h-4 text-white" />
                 </button>
                 <button className="px-3 py-1 bg-blue-500 text-white text-xs rounded-full">
