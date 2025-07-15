@@ -100,7 +100,7 @@ const FoodieCard = ({ name, title, instagramHandle, rating, score, collaboration
               {/* Action Buttons */}
               <div className="flex space-x-2">
                 <button className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 text-white stroke-current fill-none" strokeWidth="2">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 text-white stroke-current fill-none ml-0.5" strokeWidth="2">
                     <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
                   </svg>
                 </button>
