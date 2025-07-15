@@ -1,10 +1,9 @@
-import { Instagram, Youtube } from 'lucide-react';
+import { Instagram, Youtube, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface FoodieCardProps {
   name: string;
   title: string;
-  image: string;
   instagram: {
     followers: string;
     engagement: string;
@@ -19,19 +18,15 @@ interface FoodieCardProps {
   };
 }
 
-const FoodieCard = ({ name, title, image, instagram, tiktok, youtube }: FoodieCardProps) => {
+const FoodieCard = ({ name, title, instagram, tiktok, youtube }: FoodieCardProps) => {
   return (
     <Card className="w-full max-w-md mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">
       <CardContent className="p-0">
         {/* Main horizontal section */}
         <div className="flex items-center p-4">
-          {/* Profile Image */}
-          <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
-            <img
-              src={image}
-              alt={`${name} profile`}
-              className="w-full h-full object-cover"
-            />
+          {/* Profile Icon */}
+          <div className="w-16 h-16 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center">
+            <User className="w-8 h-8 text-gray-500" />
           </div>
           
           {/* Social Media Stats */}

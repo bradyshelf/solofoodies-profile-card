@@ -16,7 +16,6 @@ const Homepage = () => {
     {
       name: "Chef Maria Rodriguez",
       title: "Food Enthusiast",
-      image: "/lovable-uploads/26ce4d51-7cef-481d-8b86-af6c758c3760.png",
       instagram: {
         followers: "125K",
         engagement: "4.2%"
@@ -33,7 +32,6 @@ const Homepage = () => {
     {
       name: "Alex Thompson",
       title: "Culinary Explorer",
-      image: "/lovable-uploads/af4f172b-c1c6-4c8b-916f-423ef933eeaa.png",
       instagram: {
         followers: "78K",
         engagement: "5.3%"
@@ -101,7 +99,6 @@ const Homepage = () => {
               key={index}
               name={foodie.name}
               title={foodie.title}
-              image={foodie.image}
               instagram={foodie.instagram}
               tiktok={foodie.tiktok}
               youtube={foodie.youtube}
