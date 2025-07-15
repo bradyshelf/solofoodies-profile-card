@@ -132,17 +132,7 @@ const FoodieCard = ({ name, title, instagramHandle, rating, score, collaboration
             <div className="text-xs text-gray-500">{youtube.engagement}</div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="w-4 h-4 mb-1 flex items-center justify-center">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-gray-600">
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                <path d="M12 11h4"/>
-                <path d="M12 16h4"/>
-                <path d="M8 11h.01"/>
-                <path d="M8 16h.01"/>
-              </svg>
-            </div>
-            <div className="text-xs font-bold text-gray-900">{collaborations}</div>
+            <div className="text-xs font-bold text-gray-900 mt-4">{collaborations}</div>
             <div className="text-xs text-gray-500">Collabs</div>
           </div>
         </div>
