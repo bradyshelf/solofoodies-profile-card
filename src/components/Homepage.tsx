@@ -18,6 +18,7 @@ const Homepage = () => {
       title: "Food Enthusiast",
       instagramHandle: "@chefmariarod",
       rating: 5,
+      score: 9,
       instagram: {
         followers: "125K",
         engagement: "4.2%"
@@ -36,6 +37,7 @@ const Homepage = () => {
       title: "Culinary Explorer",
       instagramHandle: "@alexeats",
       rating: 4,
+      score: 7,
       instagram: {
         followers: "78K",
         engagement: "5.3%"
@@ -105,6 +107,7 @@ const Homepage = () => {
               title={foodie.title}
               instagramHandle={foodie.instagramHandle}
               rating={foodie.rating}
+              score={foodie.score}
               instagram={foodie.instagram}
               tiktok={foodie.tiktok}
               youtube={foodie.youtube}

@@ -6,6 +6,7 @@ interface FoodieCardProps {
   title: string;
   instagramHandle: string;
   rating: number;
+  score: number;
   instagram: {
     followers: string;
     engagement: string;
@@ -20,9 +21,14 @@ interface FoodieCardProps {
   };
 }
 
-const FoodieCard = ({ name, title, instagramHandle, rating, instagram, tiktok, youtube }: FoodieCardProps) => {
+const FoodieCard = ({ name, title, instagramHandle, rating, score, instagram, tiktok, youtube }: FoodieCardProps) => {
   return (
-    <Card className="w-full max-w-md mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">
+    <Card className="w-full max-w-md mx-auto bg-white shadow-lg rounded-2xl overflow-hidden relative">
+      {/* Round Score Badge */}
+      <div className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full border-2 border-gray-200 flex items-center justify-center shadow-sm">
+        <span className="text-sm font-bold text-gray-900">{score}</span>
+      </div>
+      
       <CardContent className="p-4">
         {/* Main horizontal section */}
         <div className="flex items-start">
