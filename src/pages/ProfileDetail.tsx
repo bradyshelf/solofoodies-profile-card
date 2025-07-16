@@ -1,0 +1,211 @@
+import { ArrowLeft, Star, Heart, Instagram, Youtube, MessageCircle, Handshake } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+
+interface FoodieData {
+  id: string;
+  name: string;
+  title: string;
+  instagramHandle: string;
+  rating: number;
+  score: number;
+  collaborations: number;
+  instagram: {
+    followers: string;
+    engagement: string;
+  };
+  tiktok: {
+    followers: string;
+    engagement: string;
+  };
+  youtube: {
+    followers: string;
+    engagement: string;
+  };
+}
+
+const ProfileDetail = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  // Sample data - in a real app this would come from props or API
+  const sampleFoodies: FoodieData[] = [
+    {
+      id: "1",
+      name: "Cameron Williamson",
+      title: "Foodie madrileño",
+      instagramHandle: "@CameronWilliamson",
+      rating: 5,
+      score: 85,
+      collaborations: 12,
+      instagram: { followers: "13K", engagement: "2.15%" },
+      tiktok: { followers: "8.5K", engagement: "3.2%" },
+      youtube: { followers: "5.2K", engagement: "1.8%" }
+    },
+    {
+      id: "2", 
+      name: "Maria Garcia",
+      title: "Chef & Food Blogger",
+      instagramHandle: "@MariaGarcia",
+      rating: 4,
+      score: 72,
+      collaborations: 8,
+      instagram: { followers: "25K", engagement: "3.1%" },
+      tiktok: { followers: "15K", engagement: "4.2%" },
+      youtube: { followers: "12K", engagement: "2.5%" }
+    }
+  ];
+
+  const foodie = sampleFoodies.find(f => f.id === id) || sampleFoodies[0];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 px-4 py-3">
+        <div className="flex items-center">
+          <button 
+            onClick={() => navigate(-1)}
+            className="flex items-center text-gray-600 hover:text-gray-800"
+          >
+            <ArrowLeft className="w-5 h-5 mr-2" />
+            <span className="font-medium">ATRÁS</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Profile Section */}
+      <div className="bg-white px-4 py-6">
+        <div className="flex items-start justify-between">
+          <div className="flex items-start space-x-4">
+            {/* Profile Image */}
+            <div className="w-16 h-16 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center">
+              <span className="text-lg font-semibold text-gray-600">
+                {foodie.name.split(' ').map(n => n[0]).join('')}
+              </span>
+            </div>
+            
+            {/* Profile Info */}
+            <div>
+              <h1 className="text-xl font-bold text-gray-900">{foodie.instagramHandle}</h1>
+              <p className="text-gray-600 text-sm">{foodie.name}</p>
+              
+              {/* Rating */}
+              <div className="flex items-center mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`w-4 h-4 ${
+                      i < foodie.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+                    }`}
+                  />
+                ))}
+                <span className="text-sm text-gray-500 ml-1">({foodie.rating})</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Heart Icon */}
+          <button className="p-2">
+            <Heart className="w-6 h-6 text-red-500" />
+          </button>
+        </div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-200">
+          <div className="text-center">
+            <div className="text-lg font-bold text-gray-900">{foodie.instagram.followers}</div>
+            <div className="text-sm text-gray-500">Followers</div>
+          </div>
+          <div className="text-center">
+            <div className="text-lg font-bold text-gray-900">{foodie.instagram.engagement}</div>
+            <div className="text-sm text-gray-500">Engagement</div>
+          </div>
+          <div className="text-center">
+            <div className="text-lg font-bold text-gray-900">{foodie.collaborations}</div>
+            <div className="text-sm text-gray-500">Colabs</div>
+          </div>
+          <div className="text-center">
+            <div className="text-lg font-bold text-gray-900">{foodie.score}</div>
+            <div className="text-sm text-gray-500">Score</div>
+          </div>
+        </div>
+
+        {/* Description */}
+        <div className="mt-6">
+          <p className="text-gray-700">📍 {foodie.title}</p>
+          <p className="text-gray-600 text-sm mt-1">Buscando los mejores restaurantes de Madrid</p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex items-center space-x-3 mt-6">
+          <Button className="flex-1 bg-blue-500 hover:bg-blue-600 text-white">
+            Colaborar
+          </Button>
+          <button className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+            <MessageCircle className="w-6 h-6 text-white" />
+          </button>
+          <button className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center">
+            <Instagram className="w-6 h-6 text-white" />
+          </button>
+        </div>
+      </div>
+
+      {/* Collaborations Section */}
+      <div className="bg-white mt-4 px-4 py-6">
+        <h2 className="text-lg font-bold text-gray-900 mb-4">Colaboraciones realizadas</h2>
+        
+        <div className="text-center py-8">
+          <p className="text-gray-500 mb-2">No has colaborado aún con</p>
+          <p className="text-gray-500 mb-4">este foodie</p>
+          <button className="text-blue-500 font-medium">+ Colaborar juntos</button>
+        </div>
+      </div>
+
+      {/* Social Media Stats */}
+      <div className="bg-white mt-4 px-4 py-6">
+        <h3 className="text-lg font-bold text-gray-900 mb-4">Estadísticas de redes</h3>
+        
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Instagram className="w-5 h-5 text-pink-500" />
+              <span className="font-medium">Instagram</span>
+            </div>
+            <div className="text-right">
+              <div className="font-bold">{foodie.instagram.followers}</div>
+              <div className="text-sm text-gray-500">{foodie.instagram.engagement}</div>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-5 h-5 flex items-center justify-center">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-black">
+                  <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+              </div>
+              <span className="font-medium">TikTok</span>
+            </div>
+            <div className="text-right">
+              <div className="font-bold">{foodie.tiktok.followers}</div>
+              <div className="text-sm text-gray-500">{foodie.tiktok.engagement}</div>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Youtube className="w-5 h-5 text-red-500" />
+              <span className="font-medium">YouTube</span>
+            </div>
+            <div className="text-right">
+              <div className="font-bold">{foodie.youtube.followers}</div>
+              <div className="text-sm text-gray-500">{foodie.youtube.engagement}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProfileDetail;

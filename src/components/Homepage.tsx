@@ -14,6 +14,7 @@ const Homepage = () => {
 
   const sampleFoodies = [
     {
+      id: "1",
       name: "Chef Maria Rodriguez",
       title: "Food Enthusiast",
       instagramHandle: "@chefmariarod",
@@ -34,6 +35,7 @@ const Homepage = () => {
       }
     },
     {
+      id: "2",
       name: "Alex Thompson",
       title: "Culinary Explorer",
       instagramHandle: "@alexeats",
@@ -81,18 +83,23 @@ const Homepage = () => {
             Featured Foodies
           </h2>
           {sampleFoodies.map((foodie, index) => (
-            <FoodieCard
+            <div
               key={index}
-              name={foodie.name}
-              title={foodie.title}
-              instagramHandle={foodie.instagramHandle}
-              rating={foodie.rating}
-              score={foodie.score}
-              collaborations={foodie.collaborations}
-              instagram={foodie.instagram}
-              tiktok={foodie.tiktok}
-              youtube={foodie.youtube}
-            />
+              onClick={() => navigate(`/profile/${foodie.id}`)}
+              className="cursor-pointer hover:scale-[1.02] transition-transform duration-200"
+            >
+              <FoodieCard
+                name={foodie.name}
+                title={foodie.title}
+                instagramHandle={foodie.instagramHandle}
+                rating={foodie.rating}
+                score={foodie.score}
+                collaborations={foodie.collaborations}
+                instagram={foodie.instagram}
+                tiktok={foodie.tiktok}
+                youtube={foodie.youtube}
+              />
+            </div>
           ))}
         </div>
 
