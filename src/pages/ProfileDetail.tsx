@@ -61,8 +61,8 @@ const ProfileDetail = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-4 py-3">
-        <div className="flex items-center">
+      <div className="bg-white border-b border-gray-200 px-4 lg:px-8 py-3">
+        <div className="flex items-center max-w-4xl mx-auto">
           <button 
             onClick={() => navigate(-1)}
             className="flex items-center text-gray-600 hover:text-gray-800"
@@ -74,7 +74,8 @@ const ProfileDetail = () => {
       </div>
 
       {/* Profile Section */}
-      <div className="bg-white px-4 py-6">
+      <div className="bg-white px-4 lg:px-8 py-6">
+        <div className="max-w-4xl mx-auto">
         <div className="flex items-start justify-between">
           <div className="flex items-start space-x-4">
             {/* Profile Image */}
@@ -195,22 +196,26 @@ const ProfileDetail = () => {
           <p className="text-gray-700">📍 {foodie.title}</p>
           <p className="text-gray-600 text-sm mt-1">Buscando los mejores restaurantes de Madrid</p>
         </div>
+        </div>
       </div>
 
       {/* Collaborations Section */}
-      <div className="bg-white mt-4 px-4 py-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">Colaboraciones realizadas</h2>
-        
-        <div className="text-center py-8">
-          <p className="text-gray-500 mb-2">No has colaborado aún con</p>
-          <p className="text-gray-500 mb-4">este foodie</p>
-          <button className="text-blue-500 font-medium">+ Colaborar juntos</button>
+      <div className="bg-white mt-4 px-4 lg:px-8 py-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg font-bold text-gray-900 mb-4">Colaboraciones realizadas</h2>
+          
+          <div className="text-center py-8">
+            <p className="text-gray-500 mb-2">No has colaborado aún con</p>
+            <p className="text-gray-500 mb-4">este foodie</p>
+            <button className="text-blue-500 font-medium">+ Colaborar juntos</button>
+          </div>
         </div>
       </div>
 
       {/* Social Media Stats */}
-      <div className="bg-white mt-4 px-4 py-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Estadísticas de redes</h3>
+      <div className="bg-white mt-4 px-4 lg:px-8 py-6">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-lg font-bold text-gray-900 mb-4">Estadísticas de redes</h3>
         
         <div className="space-y-4">
           <div className="flex items-center justify-between">
@@ -249,6 +254,7 @@ const ProfileDetail = () => {
               <div className="text-sm text-gray-500">{foodie.youtube.engagement}</div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
