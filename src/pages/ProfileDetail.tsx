@@ -192,21 +192,23 @@ const ProfileDetail = () => {
         </div>
 
         {/* Description */}
-        <div className="mt-6">
-          <p className="text-gray-700">📍 {foodie.title}</p>
-          <p className="text-gray-600 text-sm mt-1">Buscando los mejores restaurantes de Madrid</p>
-        </div>
-
-        {/* Chat and Message Buttons */}
-        <div className="flex space-x-3 justify-end mt-6">
-          <button className="flex items-center justify-center w-12 h-12 bg-green-500 rounded-full hover:bg-green-600 transition-colors">
-            <MessageCircle className="w-6 h-6 text-white" />
-          </button>
-          <button className="flex items-center justify-center w-12 h-12 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors">
-            <svg viewBox="0 0 24 24" className="w-6 h-6 text-white stroke-current fill-none" strokeWidth="2">
-              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-            </svg>
-          </button>
+        <div className="mt-6 flex justify-between items-start">
+          <div>
+            <p className="text-gray-700">📍 {foodie.title}</p>
+            <p className="text-gray-600 text-sm mt-1">Buscando los mejores restaurantes de Madrid</p>
+          </div>
+          
+          {/* Chat and Message Buttons */}
+          <div className="flex space-x-3">
+            <button className="flex items-center justify-center w-12 h-12 bg-green-500 rounded-full hover:bg-green-600 transition-colors">
+              <MessageCircle className="w-6 h-6 text-white" />
+            </button>
+            <button className="flex items-center justify-center w-12 h-12 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors">
+              <svg viewBox="0 0 24 24" className="w-6 h-6 text-white stroke-current fill-none" strokeWidth="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+            </button>
+          </div>
         </div>
         </div>
       </div>
