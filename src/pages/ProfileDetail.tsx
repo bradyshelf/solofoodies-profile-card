@@ -85,21 +85,73 @@ const ProfileDetail = () => {
             </div>
             
             {/* Profile Info */}
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">{foodie.instagramHandle}</h1>
-              <p className="text-gray-600 text-sm">{foodie.name}</p>
-              
-              {/* Rating */}
-              <div className="flex items-center mt-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-4 h-4 ${
-                      i < foodie.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                    }`}
-                  />
-                ))}
-                <span className="text-sm text-gray-500 ml-1">({foodie.rating})</span>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">{foodie.instagramHandle}</p>
+                    <div className="flex items-center mt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-3 h-3 ${
+                            i < foodie.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+                          }`}
+                        />
+                      ))}
+                      <span className="text-xs text-gray-500 ml-1">({foodie.rating})</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">{foodie.title}</p>
+                  </div>
+                  
+                  {/* Credibility Score */}
+                  <div className="relative w-10 h-10 flex items-center justify-center">
+                    <svg className="w-10 h-10 transform -rotate-90" viewBox="0 0 40 40">
+                      {/* Background circle */}
+                      <circle
+                        cx="20"
+                        cy="20"
+                        r="16"
+                        fill="none"
+                        stroke="#e5e7eb"
+                        strokeWidth="2"
+                      />
+                      {/* Progress circle */}
+                      <circle
+                        cx="20"
+                        cy="20"
+                        r="16"
+                        fill="none"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeDasharray={2 * Math.PI * 16}
+                        strokeDashoffset={2 * Math.PI * 16 - (foodie.score / 100) * 2 * Math.PI * 16}
+                        className={`${
+                          foodie.score >= 70 ? 'stroke-green-500' : 
+                          foodie.score >= 50 ? 'stroke-yellow-500' : 'stroke-red-500'
+                        }`}
+                      />
+                    </svg>
+                    <span className={`absolute text-xs font-bold ${
+                      foodie.score >= 70 ? 'text-green-500' : 
+                      foodie.score >= 50 ? 'text-yellow-500' : 'text-red-500'
+                    }`}>
+                      {foodie.score}
+                    </span>
+                  </div>
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="flex space-x-2">
+                  <button className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 text-white stroke-current fill-none ml-0.25" strokeWidth="2">
+                      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    </svg>
+                  </button>
+                  <button className="px-3 py-1 bg-blue-500 text-white text-xs rounded-full">
+                    Colab
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -110,23 +162,31 @@ const ProfileDetail = () => {
           </button>
         </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-200">
-          <div className="text-center">
-            <div className="text-lg font-bold text-gray-900">{foodie.instagram.followers}</div>
-            <div className="text-sm text-gray-500">Followers</div>
+        {/* Social Media Stats Section */}
+        <div className="flex justify-between items-center mt-4 pt-3 border-t border-gray-200">
+          <div className="flex flex-col items-center">
+            <Instagram className="w-4 h-4 text-pink-500 mb-1" />
+            <div className="text-xs font-bold text-gray-900">{foodie.instagram.followers}</div>
+            <div className="text-xs text-gray-500">{foodie.instagram.engagement}</div>
           </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-gray-900">{foodie.instagram.engagement}</div>
-            <div className="text-sm text-gray-500">Engagement</div>
+          <div className="flex flex-col items-center">
+            <div className="w-4 h-4 mb-1 flex items-center justify-center">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-black">
+                <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+              </svg>
+            </div>
+            <div className="text-xs font-bold text-gray-900">{foodie.tiktok.followers}</div>
+            <div className="text-xs text-gray-500">{foodie.tiktok.engagement}</div>
           </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-gray-900">{foodie.collaborations}</div>
-            <div className="text-sm text-gray-500">Colabs</div>
+          <div className="flex flex-col items-center">
+            <Youtube className="w-4 h-4 text-red-500 mb-1" />
+            <div className="text-xs font-bold text-gray-900">{foodie.youtube.followers}</div>
+            <div className="text-xs text-gray-500">{foodie.youtube.engagement}</div>
           </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-gray-900">{foodie.score}</div>
-            <div className="text-sm text-gray-500">Score</div>
+          <div className="flex flex-col items-center">
+            <Handshake className="w-4 h-4 text-gray-600 mb-1" />
+            <div className="text-xs font-bold text-gray-900">{foodie.collaborations}</div>
+            <div className="text-xs text-gray-500">Collabs</div>
           </div>
         </div>
 
@@ -134,19 +194,6 @@ const ProfileDetail = () => {
         <div className="mt-6">
           <p className="text-gray-700">📍 {foodie.title}</p>
           <p className="text-gray-600 text-sm mt-1">Buscando los mejores restaurantes de Madrid</p>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex items-center space-x-3 mt-6">
-          <Button className="flex-1 bg-blue-500 hover:bg-blue-600 text-white">
-            Colaborar
-          </Button>
-          <button className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-            <MessageCircle className="w-6 h-6 text-white" />
-          </button>
-          <button className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center">
-            <Instagram className="w-6 h-6 text-white" />
-          </button>
         </div>
       </div>
 
