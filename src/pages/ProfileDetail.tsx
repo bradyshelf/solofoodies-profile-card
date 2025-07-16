@@ -191,7 +191,7 @@ const ProfileDetail = () => {
             <button className="flex items-center justify-center w-12 h-12 bg-green-500 rounded-full hover:bg-green-600 transition-colors">
               <MessageCircle className="w-6 h-6 text-white" />
             </button>
-            <button className="flex items-center justify-center px-3 py-1 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors">
+            <button className="flex items-center justify-center px-5 py-1 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors">
               <span className="text-white text-xs font-medium">Colab</span>
             </button>
           </div>
