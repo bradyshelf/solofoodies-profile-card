@@ -106,8 +106,8 @@ const ProfileDetail = () => {
                   </div>
                   
                   {/* Credibility Score */}
-                  <div className="relative w-10 h-10 flex items-center justify-center">
-                    <svg className="w-10 h-10 transform -rotate-90" viewBox="0 0 40 40">
+                  <div className="relative w-14 h-14 flex items-center justify-center">
+                    <svg className="w-14 h-14 transform -rotate-90" viewBox="0 0 40 40">
                       {/* Background circle */}
                       <circle
                         cx="20"
