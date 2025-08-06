@@ -75,7 +75,7 @@ const ProfileDetail = () => {
       restaurant: "Bocado Burguer",
       date: "8 Oct 2023", 
       type: "Stories + Post",
-      image: "/public/lovable-uploads/af4f172b-c1c6-4c8b-916f-423ef933eeaa.png",
+      image: "/public/lovable-uploads/26ce4d51-7cef-481d-8b86-af6c758c3760.png",
       description: "Evento de lanzamiento de la nueva línea de hamburguesas gourmet"
     }
   ];
