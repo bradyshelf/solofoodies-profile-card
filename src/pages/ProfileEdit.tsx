@@ -1,16 +1,22 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { ArrowLeft, Camera, Plus, X } from "lucide-react";
+import { ArrowLeft, Camera, Plus, X, Save, X as Cancel } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import FoodieCard from "@/components/FoodieCard";
+import PreviewFoodieCard from "@/components/PreviewFoodieCard";
+import { useToast } from "@/hooks/use-toast";
 
 const ProfileEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { toast } = useToast();
+  
+  // Edit state management
+  const [isEditing, setIsEditing] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   // Sample data for the profile being edited
   const [profile, setProfile] = useState({
@@ -43,17 +49,61 @@ const ProfileEdit = () => {
   ]);
 
   const addSocialLink = () => {
+    if (!isEditing) return;
     setSocialLinks([...socialLinks, { platform: "", handle: "", url: "" }]);
+    setHasUnsavedChanges(true);
   };
 
   const removeSocialLink = (index: number) => {
+    if (!isEditing) return;
     setSocialLinks(socialLinks.filter((_, i) => i !== index));
+    setHasUnsavedChanges(true);
   };
 
   const updateSocialLink = (index: number, field: string, value: string) => {
+    if (!isEditing) return;
     const updated = [...socialLinks];
     updated[index] = { ...updated[index], [field]: value };
     setSocialLinks(updated);
+    setHasUnsavedChanges(true);
+  };
+
+  const handleProfileChange = (field: string, value: string) => {
+    if (!isEditing) return;
+    setProfile({ ...profile, [field]: value });
+    setHasUnsavedChanges(true);
+  };
+
+  const handleBioChange = (value: string) => {
+    if (!isEditing) return;
+    setBio(value);
+    setHasUnsavedChanges(true);
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    // Here you would typically save to your backend
+    setIsEditing(false);
+    setHasUnsavedChanges(false);
+    toast({
+      title: "Profile updated",
+      description: "Your changes have been saved successfully.",
+    });
+  };
+
+  const handleCancel = () => {
+    if (hasUnsavedChanges) {
+      if (window.confirm("You have unsaved changes. Are you sure you want to cancel?")) {
+        setIsEditing(false);
+        setHasUnsavedChanges(false);
+        // Reset form to original values if needed
+      }
+    } else {
+      setIsEditing(false);
+    }
   };
 
   return (
@@ -70,8 +120,19 @@ const ProfileEdit = () => {
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-2xl font-bold">Edit Profile</h1>
-          <div className="ml-auto">
-            <Button>Save Changes</Button>
+          <div className="ml-auto flex gap-2">
+            {isEditing ? (
+              <>
+                <Button variant="outline" onClick={handleCancel}>
+                  <Cancel className="w-4 h-4 mr-2" />
+                  Cancel
+                </Button>
+                <Button onClick={handleSave}>
+                  <Save className="w-4 h-4 mr-2" />
+                  Save Changes
+                </Button>
+              </>
+            ) : null}
           </div>
         </div>
       </div>
@@ -86,7 +147,7 @@ const ProfileEdit = () => {
             </div>
           </div>
           <div className="max-w-sm">
-            <FoodieCard 
+            <PreviewFoodieCard 
               name={profile.name}
               title={profile.title}
               instagramHandle={profile.instagramHandle}
@@ -96,6 +157,7 @@ const ProfileEdit = () => {
               instagram={profile.instagram}
               tiktok={profile.tiktok}
               youtube={profile.youtube}
+              onEdit={handleEdit}
             />
           </div>
         </div>
@@ -117,7 +179,8 @@ const ProfileEdit = () => {
                   <Input
                     id="name"
                     value={profile.name}
-                    onChange={(e) => setProfile({...profile, name: e.target.value})}
+                    onChange={(e) => handleProfileChange('name', e.target.value)}
+                    disabled={!isEditing}
                   />
                 </div>
                 <div className="space-y-2">
@@ -125,7 +188,8 @@ const ProfileEdit = () => {
                   <Input
                     id="title"
                     value={profile.title}
-                    onChange={(e) => setProfile({...profile, title: e.target.value})}
+                    onChange={(e) => handleProfileChange('title', e.target.value)}
+                    disabled={!isEditing}
                   />
                 </div>
               </div>
@@ -134,9 +198,10 @@ const ProfileEdit = () => {
                 <Textarea
                   id="bio"
                   value={bio}
-                  onChange={(e) => setBio(e.target.value)}
+                  onChange={(e) => handleBioChange(e.target.value)}
                   placeholder="Tell restaurants about yourself and your food interests..."
                   rows={3}
+                  disabled={!isEditing}
                 />
               </div>
             </CardContent>
@@ -147,7 +212,12 @@ const ProfileEdit = () => {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 Social Media Accounts
-                <Button onClick={addSocialLink} size="sm" variant="outline">
+                <Button 
+                  onClick={addSocialLink} 
+                  size="sm" 
+                  variant="outline"
+                  disabled={!isEditing}
+                >
                   <Plus className="w-4 h-4" />
                   Add Platform
                 </Button>
@@ -162,6 +232,7 @@ const ProfileEdit = () => {
                       value={social.platform}
                       onChange={(e) => updateSocialLink(index, "platform", e.target.value)}
                       placeholder="Instagram, TikTok, etc."
+                      disabled={!isEditing}
                     />
                   </div>
                   <div className="space-y-2">
@@ -170,6 +241,7 @@ const ProfileEdit = () => {
                       value={social.handle}
                       onChange={(e) => updateSocialLink(index, "handle", e.target.value)}
                       placeholder="@username"
+                      disabled={!isEditing}
                     />
                   </div>
                   <div className="space-y-2">
@@ -178,6 +250,7 @@ const ProfileEdit = () => {
                       value={social.url}
                       onChange={(e) => updateSocialLink(index, "url", e.target.value)}
                       placeholder="https://..."
+                      disabled={!isEditing}
                     />
                   </div>
                   <div className="flex items-end">
@@ -186,6 +259,7 @@ const ProfileEdit = () => {
                       size="icon"
                       onClick={() => removeSocialLink(index)}
                       className="text-destructive hover:text-destructive"
+                      disabled={!isEditing}
                     >
                       <X className="w-4 h-4" />
                     </Button>
@@ -204,14 +278,14 @@ const ProfileEdit = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Profile Visibility</Label>
-                  <select className="w-full p-2 border rounded-md bg-background">
+                  <select className="w-full p-2 border rounded-md bg-background" disabled={!isEditing}>
                     <option>Public - Visible to all restaurants</option>
                     <option>Private - Only visible to connected restaurants</option>
                   </select>
                 </div>
                 <div className="space-y-2">
                   <Label>Collaboration Status</Label>
-                  <select className="w-full p-2 border rounded-md bg-background">
+                  <select className="w-full p-2 border rounded-md bg-background" disabled={!isEditing}>
                     <option>Open to collaborations</option>
                     <option>Selective collaborations</option>
                     <option>Not accepting collaborations</option>
