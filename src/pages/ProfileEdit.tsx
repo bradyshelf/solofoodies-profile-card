@@ -140,11 +140,8 @@ const ProfileEdit = () => {
       <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
         {/* Preview Section */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <h2 className="text-xl font-semibold">How restaurants see your profile</h2>
-            <div className="bg-muted px-2 py-1 rounded text-xs text-muted-foreground">
-              Live Preview
-            </div>
+          <div className="bg-muted px-2 py-1 rounded text-xs text-muted-foreground w-fit">
+            Live Preview
           </div>
           <div className="max-w-sm">
             <PreviewFoodieCard 
@@ -207,67 +204,6 @@ const ProfileEdit = () => {
             </CardContent>
           </Card>
 
-          {/* Social Media */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                Social Media Accounts
-                <Button 
-                  onClick={addSocialLink} 
-                  size="sm" 
-                  variant="outline"
-                  disabled={!isEditing}
-                >
-                  <Plus className="w-4 h-4" />
-                  Add Platform
-                </Button>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {socialLinks.map((social, index) => (
-                <div key={index} className="grid grid-cols-1 md:grid-cols-4 gap-3 p-3 border rounded-lg">
-                  <div className="space-y-2">
-                    <Label>Platform</Label>
-                    <Input
-                      value={social.platform}
-                      onChange={(e) => updateSocialLink(index, "platform", e.target.value)}
-                      placeholder="Instagram, TikTok, etc."
-                      disabled={!isEditing}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Handle</Label>
-                    <Input
-                      value={social.handle}
-                      onChange={(e) => updateSocialLink(index, "handle", e.target.value)}
-                      placeholder="@username"
-                      disabled={!isEditing}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>URL</Label>
-                    <Input
-                      value={social.url}
-                      onChange={(e) => updateSocialLink(index, "url", e.target.value)}
-                      placeholder="https://..."
-                      disabled={!isEditing}
-                    />
-                  </div>
-                  <div className="flex items-end">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => removeSocialLink(index)}
-                      className="text-destructive hover:text-destructive"
-                      disabled={!isEditing}
-                    >
-                      <X className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
 
           {/* Profile Settings */}
           <Card>

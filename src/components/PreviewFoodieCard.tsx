@@ -1,4 +1,4 @@
-import { Instagram, Youtube, User, Star, Handshake } from 'lucide-react';
+import { Instagram, Youtube, User, Star, Plus } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface PreviewFoodieCardProps {
@@ -144,9 +144,13 @@ const PreviewFoodieCard = ({
             <div className="text-xs text-gray-500">{youtube.engagement}</div>
           </div>
           <div className="flex flex-col items-center">
-            <Handshake className="w-4 h-4 text-gray-600 mb-1" />
-            <div className="text-xs font-bold text-gray-900">{collaborations}</div>
-            <div className="text-xs text-gray-500">Collabs</div>
+            <button 
+              onClick={onEdit}
+              className="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors mb-1"
+            >
+              <Plus className="w-3 h-3" />
+            </button>
+            <div className="text-xs text-gray-500">Add</div>
           </div>
         </div>
       </CardContent>
