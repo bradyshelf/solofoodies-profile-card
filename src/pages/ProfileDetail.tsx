@@ -1,7 +1,7 @@
 import { ArrowLeft, Star, Heart, Instagram, Youtube, MessageCircle, Handshake } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+
 
 interface FoodieData {
   id: string;
@@ -28,7 +28,7 @@ interface FoodieData {
 const ProfileDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [viewMode, setViewMode] = useState<'empty' | 'with-collabs'>('empty');
+  
 
   // Sample data - in a real app this would come from props or API
   const sampleFoodies: FoodieData[] = [
@@ -221,40 +221,13 @@ const ProfileDetail = () => {
         </div>
       </div>
 
-      {/* View Mode Navigation */}
-      <div className="bg-white mt-4 px-4 lg:px-8 py-4 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex space-x-6">
-            <button
-              onClick={() => setViewMode('empty')}
-              className={`pb-2 border-b-2 font-medium ${
-                viewMode === 'empty'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Vista Sin Colaboraciones
-            </button>
-            <button
-              onClick={() => setViewMode('with-collabs')}
-              className={`pb-2 border-b-2 font-medium ${
-                viewMode === 'with-collabs'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Vista Con Colaboraciones
-            </button>
-          </div>
-        </div>
-      </div>
 
       {/* Collaborations Section */}
       <div className="bg-white px-4 lg:px-8 py-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-lg font-bold text-gray-900 mb-4">Colaboraciones</h2>
           
-          {viewMode === 'empty' ? (
+          {id === '1' ? (
             <div className="text-center py-8">
               <p className="text-gray-500 mb-2">No has colaborado aún con</p>
               <p className="text-gray-500 mb-4">este foodie</p>
