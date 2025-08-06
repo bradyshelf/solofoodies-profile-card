@@ -19,7 +19,7 @@ const Homepage = () => {
       title: "Food Enthusiast",
       instagramHandle: "@chefmariarod",
       rating: 5,
-      score: 73,
+      score: 85,
       collaborations: 14,
       instagram: {
         followers: "125K",
@@ -40,8 +40,8 @@ const Homepage = () => {
       title: "Culinary Explorer",
       instagramHandle: "@alexeats",
       rating: 4,
-      score: 25,
-      collaborations: 3,
+      score: 65,
+      collaborations: 8,
       instagram: {
         followers: "78K",
         engagement: "5.3%"
@@ -53,6 +53,27 @@ const Homepage = () => {
       youtube: {
         followers: "32K",
         engagement: "2.9%"
+      }
+    },
+    {
+      id: "3",
+      name: "Sofia Chen",
+      title: "Street Food Explorer",
+      instagramHandle: "@sofiaeats",
+      rating: 3,
+      score: 35,
+      collaborations: 2,
+      instagram: {
+        followers: "45K",
+        engagement: "3.8%"
+      },
+      tiktok: {
+        followers: "92K",
+        engagement: "5.1%"
+      },
+      youtube: {
+        followers: "18K",
+        engagement: "2.2%"
       }
     }
   ];
