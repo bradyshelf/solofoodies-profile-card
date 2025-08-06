@@ -106,7 +106,7 @@ const Homepage = () => {
           {sampleFoodies.map((foodie, index) => (
             <div
               key={index}
-              onClick={() => navigate(`/profile/${foodie.id}`)}
+              onClick={() => navigate(foodie.id === "3" ? `/profile/edit/${foodie.id}` : `/profile/${foodie.id}`)}
               className="cursor-pointer hover:scale-[1.02] transition-transform duration-200"
             >
               <FoodieCard

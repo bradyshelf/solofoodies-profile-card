@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProfileDetail from "./pages/ProfileDetail";
+import ProfileEdit from "./pages/ProfileEdit";
 
 const App = () => (
   <TooltipProvider>
@@ -14,6 +15,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/profile/:id" element={<ProfileDetail />} />
+        <Route path="/profile/edit/:id" element={<ProfileEdit />} />
         <Route path="*" element={<Index />} />
       </Routes>
     </BrowserRouter>
