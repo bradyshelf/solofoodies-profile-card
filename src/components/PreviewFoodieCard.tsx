@@ -49,7 +49,7 @@ const PreviewFoodieCard = ({
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">
+    <Card className="w-full bg-white shadow-lg rounded-2xl overflow-hidden">
       <CardContent className="p-4">
         {/* Main horizontal section */}
         <div className="flex items-start">
