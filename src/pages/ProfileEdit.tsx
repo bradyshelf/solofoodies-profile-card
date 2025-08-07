@@ -261,6 +261,18 @@ const ProfileEdit = () => {
                   <div className="text-sm text-muted-foreground">{profile.youtube.engagement}</div>
                 </div>
               </div>
+              
+              {/* Add New Social Media Button */}
+              <div className="pt-4 border-t">
+                <Button 
+                  variant="outline" 
+                  className="w-full" 
+                  disabled={!isEditing}
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Agregar nueva red social
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
