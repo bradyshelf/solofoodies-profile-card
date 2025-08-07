@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import PreviewFoodieCard from "@/components/PreviewFoodieCard";
 import { useToast } from "@/hooks/use-toast";
 
@@ -24,6 +25,7 @@ const ProfileEdit = () => {
     name: "Sofia Chen",
     title: "Street Food Explorer",
     instagramHandle: "@sofiaeats",
+    category: "Lifestyle",
     rating: 3,
     score: 35,
     collaborations: 2,
@@ -189,6 +191,26 @@ const ProfileEdit = () => {
                     disabled={!isEditing}
                   />
                 </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="category">Content Category</Label>
+                <Select
+                  value={profile.category}
+                  onValueChange={(value) => handleProfileChange('category', value)}
+                  disabled={!isEditing}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select content category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Lifestyle">Lifestyle</SelectItem>
+                    <SelectItem value="Casual">Casual</SelectItem>
+                    <SelectItem value="Travel">Travel</SelectItem>
+                    <SelectItem value="Luxury/Fine Dining">Luxury/Fine Dining</SelectItem>
+                    <SelectItem value="Fitness/Wellness">Fitness/Wellness</SelectItem>
+                    <SelectItem value="Critic/Review">Critic/Review</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="bio">Bio</Label>
