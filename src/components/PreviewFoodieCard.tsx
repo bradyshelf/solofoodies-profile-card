@@ -1,4 +1,4 @@
-import { Instagram, Youtube, User, Star, Plus } from 'lucide-react';
+import { Instagram, Youtube, User, Star, Plus, Edit, Settings } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface PreviewFoodieCardProps {
@@ -109,13 +109,16 @@ const PreviewFoodieCard = ({
                 </div>
               </div>
               
-              {/* Action Button - Only Editar */}
+              {/* Action Icons */}
               <div className="flex space-x-2">
                 <button 
                   onClick={onEdit}
-                  className="px-3 py-1 bg-blue-500 text-white text-xs rounded-full hover:bg-blue-600 transition-colors"
+                  className="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors"
                 >
-                  Editar
+                  <Edit className="w-3 h-3" />
+                </button>
+                <button className="w-6 h-6 rounded-full bg-gray-500 text-white flex items-center justify-center hover:bg-gray-600 transition-colors">
+                  <Settings className="w-3 h-3" />
                 </button>
               </div>
             </div>
