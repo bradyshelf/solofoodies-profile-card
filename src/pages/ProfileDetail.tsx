@@ -1,8 +1,6 @@
 import { ArrowLeft, Star, Heart, Instagram, Youtube, MessageCircle, Handshake } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-
-
 interface FoodieData {
   id: string;
   name: string;
@@ -24,71 +22,77 @@ interface FoodieData {
     engagement: string;
   };
 }
-
 const ProfileDetail = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  
+  const {
+    id
+  } = useParams();
 
   // Sample data - in a real app this would come from props or API
-  const sampleFoodies: FoodieData[] = [
-    {
-      id: "1",
-      name: "Cameron Williamson",
-      title: "Foodie madrileño",
-      instagramHandle: "@CameronWilliamson",
-      rating: 5,
-      score: 85,
-      collaborations: 12,
-      instagram: { followers: "13K", engagement: "2.15%" },
-      tiktok: { followers: "8.5K", engagement: "3.2%" },
-      youtube: { followers: "5.2K", engagement: "1.8%" }
+  const sampleFoodies: FoodieData[] = [{
+    id: "1",
+    name: "Cameron Williamson",
+    title: "Foodie madrileño",
+    instagramHandle: "@CameronWilliamson",
+    rating: 5,
+    score: 85,
+    collaborations: 12,
+    instagram: {
+      followers: "13K",
+      engagement: "2.15%"
     },
-    {
-      id: "2", 
-      name: "Maria Garcia",
-      title: "Chef & Food Blogger",
-      instagramHandle: "@MariaGarcia",
-      rating: 4,
-      score: 72,
-      collaborations: 8,
-      instagram: { followers: "25K", engagement: "3.1%" },
-      tiktok: { followers: "15K", engagement: "4.2%" },
-      youtube: { followers: "12K", engagement: "2.5%" }
+    tiktok: {
+      followers: "8.5K",
+      engagement: "3.2%"
+    },
+    youtube: {
+      followers: "5.2K",
+      engagement: "1.8%"
     }
-  ];
-
+  }, {
+    id: "2",
+    name: "Maria Garcia",
+    title: "Chef & Food Blogger",
+    instagramHandle: "@MariaGarcia",
+    rating: 4,
+    score: 72,
+    collaborations: 8,
+    instagram: {
+      followers: "25K",
+      engagement: "3.1%"
+    },
+    tiktok: {
+      followers: "15K",
+      engagement: "4.2%"
+    },
+    youtube: {
+      followers: "12K",
+      engagement: "2.5%"
+    }
+  }];
   const foodie = sampleFoodies.find(f => f.id === id) || sampleFoodies[0];
 
   // Sample collaboration data
-  const sampleCollaborations = [
-    {
-      id: 1,
-      restaurant: "La Tasqueria",
-      date: "15 Nov 2023",
-      type: "Reseña gastronómica",
-      image: "/public/lovable-uploads/26ce4d51-7cef-481d-8b86-af6c758c3760.png",
-      description: "Colaboración para promocionar el nuevo menú de temporada"
-    },
-    {
-      id: 2,
-      restaurant: "Bocado Burguer",
-      date: "8 Oct 2023", 
-      type: "Stories + Post",
-      image: "/public/lovable-uploads/26ce4d51-7cef-481d-8b86-af6c758c3760.png",
-      description: "Evento de lanzamiento de la nueva línea de hamburguesas gourmet"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gray-50">
+  const sampleCollaborations = [{
+    id: 1,
+    restaurant: "La Tasqueria",
+    date: "15 Nov 2023",
+    type: "Reseña gastronómica",
+    image: "/public/lovable-uploads/26ce4d51-7cef-481d-8b86-af6c758c3760.png",
+    description: "Colaboración para promocionar el nuevo menú de temporada"
+  }, {
+    id: 2,
+    restaurant: "Bocado Burguer",
+    date: "8 Oct 2023",
+    type: "Stories + Post",
+    image: "/public/lovable-uploads/26ce4d51-7cef-481d-8b86-af6c758c3760.png",
+    description: "Evento de lanzamiento de la nueva línea de hamburguesas gourmet"
+  }];
+  return <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-4 lg:px-8 py-3">
         <div className="flex items-center max-w-4xl mx-auto">
-          <button 
-            onClick={() => navigate(-1)}
-            className="flex items-center text-gray-600 hover:text-gray-800"
-          >
+          <button onClick={() => navigate(-1)} className="flex items-center text-gray-600 hover:text-gray-800">
             <ArrowLeft className="w-5 h-5 mr-2" />
             <span className="font-medium">ATRÁS</span>
           </button>
@@ -114,54 +118,14 @@ const ProfileDetail = () => {
                   <div>
                     <p className="text-sm font-medium text-gray-900">{foodie.instagramHandle}</p>
                     <div className="flex items-center mt-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-3 h-3 ${
-                            i < foodie.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                          }`}
-                        />
-                      ))}
+                      {[...Array(5)].map((_, i) => <Star key={i} className={`w-3 h-3 ${i < foodie.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} />)}
                       <span className="text-xs text-gray-500 ml-1">({foodie.rating})</span>
                     </div>
                     <p className="text-xs text-gray-600 mt-1">{foodie.title}</p>
                   </div>
                   
                   {/* Credibility Score */}
-                  <div className="relative w-14 h-14 flex items-center justify-center">
-                    <svg className="w-14 h-14 transform -rotate-90" viewBox="0 0 40 40">
-                      {/* Background circle */}
-                      <circle
-                        cx="20"
-                        cy="20"
-                        r="16"
-                        fill="none"
-                        stroke="#e5e7eb"
-                        strokeWidth="2"
-                      />
-                      {/* Progress circle */}
-                      <circle
-                        cx="20"
-                        cy="20"
-                        r="16"
-                        fill="none"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeDasharray={2 * Math.PI * 16}
-                        strokeDashoffset={2 * Math.PI * 16 - (foodie.score / 100) * 2 * Math.PI * 16}
-                        className={`${
-                          foodie.score >= 70 ? 'stroke-green-500' : 
-                          foodie.score >= 50 ? 'stroke-yellow-500' : 'stroke-red-500'
-                        }`}
-                      />
-                    </svg>
-                    <span className={`absolute text-xs font-bold ${
-                      foodie.score >= 70 ? 'text-green-500' : 
-                      foodie.score >= 50 ? 'text-yellow-500' : 'text-red-500'
-                    }`}>
-                      {foodie.score}
-                    </span>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -183,7 +147,7 @@ const ProfileDetail = () => {
           <div className="flex flex-col items-center">
             <div className="w-4 h-4 mb-1 flex items-center justify-center">
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-black">
-                <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
               </svg>
             </div>
             <div className="text-xs font-bold text-gray-900">{foodie.tiktok.followers}</div>
@@ -223,39 +187,7 @@ const ProfileDetail = () => {
 
 
       {/* Collaborations Section */}
-      <div className="bg-white px-4 lg:px-8 py-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Colaboraciones</h2>
-          
-          {id === '1' ? (
-            <div className="text-center py-8">
-              <p className="text-gray-500 mb-2">No has colaborado aún con</p>
-              <p className="text-gray-500 mb-4">este foodie</p>
-              <button className="text-blue-500 font-medium">+ Colaborar juntos</button>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {sampleCollaborations.map((collab) => (
-                <div key={collab.id} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
-                  <img
-                    src={collab.image}
-                    alt={collab.restaurant}
-                    className="w-16 h-16 rounded-lg object-cover"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-semibold text-gray-900">{collab.restaurant}</h3>
-                      <span className="text-sm text-gray-500">{collab.date}</span>
-                    </div>
-                    <p className="text-sm text-blue-600 font-medium mt-1">{collab.type}</p>
-                    <p className="text-sm text-gray-600 mt-1">{collab.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+      
 
       {/* Reviews Section */}
       <div className="bg-white mt-4 px-4 lg:px-8 py-6">
@@ -274,9 +206,7 @@ const ProfileDetail = () => {
                     <span className="text-xs text-gray-500">Hace 2 semanas</span>
                   </div>
                   <div className="flex items-center gap-1 mb-2">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+                    {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
                   </div>
                   <p className="text-sm text-gray-600">
                     Excelente colaboración. {foodie.name} creó contenido increíble que realmente capturó la esencia de nuestro restaurante. Muy profesional y creativo.
@@ -296,9 +226,7 @@ const ProfileDetail = () => {
                     <span className="text-xs text-gray-500">Hace 1 mes</span>
                   </div>
                   <div className="flex items-center gap-1 mb-2">
-                    {[1, 2, 3, 4].map((star) => (
-                      <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+                    {[1, 2, 3, 4].map(star => <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
                     <Star className="w-4 h-4 text-gray-300" />
                   </div>
                   <p className="text-sm text-gray-600">
@@ -316,8 +244,6 @@ const ProfileDetail = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default ProfileDetail;
