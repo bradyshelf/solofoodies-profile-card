@@ -218,54 +218,67 @@ const ProfileDetail = () => {
         <div className="max-w-4xl mx-auto">
           <h3 className="text-lg font-bold text-gray-900 mb-4">Reseñas de restaurantes</h3>
         
-          <div className="space-y-4">
-            <div className="border-b pb-4">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm font-semibold text-blue-600">TR</span>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-1">
-                    <h4 className="font-semibold text-gray-900">The Royal Kitchen</h4>
-                    <span className="text-xs text-gray-500">Hace 2 semanas</span>
-                  </div>
-                  <div className="flex items-center gap-1 mb-2">
-                    {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Excelente colaboración. {foodie.name} creó contenido increíble que realmente capturó la esencia de nuestro restaurante. Muy profesional y creativo.
-                  </p>
-                </div>
+          {foodie.id === "2" ? (
+            // Empty state for foodies with no reviews
+            <div className="text-center py-12">
+              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+                <Star className="w-8 h-8 text-gray-400" />
               </div>
-            </div>
-            
-            <div className="border-b pb-4">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm font-semibold text-green-600">MB</span>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-1">
-                    <h4 className="font-semibold text-gray-900">Maria's Bistro</h4>
-                    <span className="text-xs text-gray-500">Hace 1 mes</span>
-                  </div>
-                  <div className="flex items-center gap-1 mb-2">
-                    {[1, 2, 3, 4].map(star => <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
-                    <Star className="w-4 h-4 text-gray-300" />
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Muy buena experiencia trabajando con {foodie.name}. El contenido llegó a mucha audiencia interesada en comida callejera.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center pt-2">
-              <p className="text-sm text-gray-500">
-                Las reseñas son visibles para todos los restaurantes
+              <h4 className="text-gray-900 font-semibold mb-2">Aún no hay reseñas</h4>
+              <p className="text-sm text-gray-500 max-w-sm mx-auto">
+                Este foodie aún no ha recibido reseñas de restaurantes. Las reseñas aparecerán aquí después de las colaboraciones.
               </p>
             </div>
-          </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="border-b pb-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-sm font-semibold text-blue-600">TR</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <h4 className="font-semibold text-gray-900">The Royal Kitchen</h4>
+                      <span className="text-xs text-gray-500">Hace 2 semanas</span>
+                    </div>
+                    <div className="flex items-center gap-1 mb-2">
+                      {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      Excelente colaboración. {foodie.name} creó contenido increíble que realmente capturó la esencia de nuestro restaurante. Muy profesional y creativo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="border-b pb-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-sm font-semibold text-green-600">MB</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <h4 className="font-semibold text-gray-900">Maria's Bistro</h4>
+                      <span className="text-xs text-gray-500">Hace 1 mes</span>
+                    </div>
+                    <div className="flex items-center gap-1 mb-2">
+                      {[1, 2, 3, 4].map(star => <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
+                      <Star className="w-4 h-4 text-gray-300" />
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      Muy buena experiencia trabajando con {foodie.name}. El contenido llegó a mucha audiencia interesada en comida callejera.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center pt-2">
+                <p className="text-sm text-gray-500">
+                  Las reseñas son visibles para todos los restaurantes
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>;
