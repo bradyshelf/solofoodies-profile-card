@@ -226,7 +226,7 @@ const ProfileDetail = () => {
               </div>
               <h4 className="text-gray-900 font-semibold mb-2">Aún no hay reseñas</h4>
               <p className="text-sm text-gray-500 max-w-sm mx-auto">
-                Este foodie aún no ha recibido reseñas de restaurantes. Las reseñas aparecerán aquí después de las colaboraciones.
+                Este foodie aún no ha recibido reseñas
               </p>
             </div>
           ) : (
