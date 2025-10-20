@@ -189,6 +189,30 @@ const ProfileDetail = () => {
       {/* Collaborations Section */}
       
 
+      {/* Pricing Section */}
+      <div className="bg-white mt-4 px-4 lg:px-8 py-6">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-lg font-bold text-gray-900 mb-4">Tarifas</h3>
+          
+          <div className="space-y-3">
+            <div className="border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+              <span className="text-sm text-gray-700">Combo ig Reel + TikTok + Youtube Short</span>
+              <span className="text-sm font-semibold text-gray-900">150€</span>
+            </div>
+            
+            <div className="border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+              <span className="text-sm text-gray-700">Review en google maps</span>
+              <span className="text-sm font-semibold text-gray-900">25€</span>
+            </div>
+            
+            <div className="border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+              <span className="text-sm text-gray-700">Entregar todo el material de video y fotos crudo de la sesión del día</span>
+              <span className="text-sm font-semibold text-gray-900">40€</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Reviews Section */}
       <div className="bg-white mt-4 px-4 lg:px-8 py-6">
         <div className="max-w-4xl mx-auto">
