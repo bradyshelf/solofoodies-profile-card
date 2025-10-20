@@ -257,94 +257,63 @@ const ProfileDetail = () => {
         </div>
       </div>
 
-      {/* Social Media Stats */}
+      {/* Reviews Section */}
       <div className="bg-white mt-4 px-4 lg:px-8 py-6">
         <div className="max-w-4xl mx-auto">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Estadísticas de redes</h3>
+          <h3 className="text-lg font-bold text-gray-900 mb-4">Reseñas de restaurantes</h3>
         
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Instagram className="w-5 h-5 text-pink-500" />
-              <span className="font-medium">Instagram</span>
-            </div>
-            <div className="text-right">
-              <div className="font-bold">{foodie.instagram.followers}</div>
-              <div className="text-sm text-gray-500">{foodie.instagram.engagement}</div>
-            </div>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-5 h-5 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-black">
-                  <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                </svg>
+          <div className="space-y-4">
+            <div className="border-b pb-4">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-semibold text-blue-600">TR</span>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <h4 className="font-semibold text-gray-900">The Royal Kitchen</h4>
+                    <span className="text-xs text-gray-500">Hace 2 semanas</span>
+                  </div>
+                  <div className="flex items-center gap-1 mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Excelente colaboración. {foodie.name} creó contenido increíble que realmente capturó la esencia de nuestro restaurante. Muy profesional y creativo.
+                  </p>
+                </div>
               </div>
-              <span className="font-medium">TikTok</span>
             </div>
-            <div className="text-right">
-              <div className="font-bold">{foodie.tiktok.followers}</div>
-              <div className="text-sm text-gray-500">{foodie.tiktok.engagement}</div>
+            
+            <div className="border-b pb-4">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-semibold text-green-600">MB</span>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <h4 className="font-semibold text-gray-900">Maria's Bistro</h4>
+                    <span className="text-xs text-gray-500">Hace 1 mes</span>
+                  </div>
+                  <div className="flex items-center gap-1 mb-2">
+                    {[1, 2, 3, 4].map((star) => (
+                      <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                    <Star className="w-4 h-4 text-gray-300" />
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Muy buena experiencia trabajando con {foodie.name}. El contenido llegó a mucha audiencia interesada en comida callejera.
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Youtube className="w-5 h-5 text-red-500" />
-              <span className="font-medium">YouTube</span>
-            </div>
-            <div className="text-right">
-              <div className="font-bold">{foodie.youtube.followers}</div>
-              <div className="text-sm text-gray-500">{foodie.youtube.engagement}</div>
-            </div>
-          </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-5 h-5 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-black">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </div>
-              <span className="font-medium">X (Twitter)</span>
-            </div>
-            <div className="text-right">
-              <div className="font-bold">18.5K</div>
-              <div className="text-sm text-gray-500">2.8%</div>
+            <div className="text-center pt-2">
+              <p className="text-sm text-gray-500">
+                Las reseñas son visibles para todos los restaurantes
+              </p>
             </div>
           </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-5 h-5 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-blue-600">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </div>
-              <span className="font-medium">Facebook</span>
-            </div>
-            <div className="text-right">
-              <div className="font-bold">9.2K</div>
-              <div className="text-sm text-gray-500">1.9%</div>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-5 h-5 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-yellow-400">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.404-5.957 1.404-5.957s-.359-.719-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.111.221.082.343-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
-                </svg>
-              </div>
-              <span className="font-medium">Pinterest</span>
-            </div>
-            <div className="text-right">
-              <div className="font-bold">6.8K</div>
-              <div className="text-sm text-gray-500">3.5%</div>
-            </div>
-          </div>
-        </div>
         </div>
       </div>
     </div>
